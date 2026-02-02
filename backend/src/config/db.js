@@ -9,10 +9,10 @@ const databaseUrl = process.env.DATABASE_URL;
 export const sql = databaseUrl
   ? neon(databaseUrl)
   : (strings, ...values) => {
-      throw new Error(
-        "No DATABASE_URL set; database operations are disabled. Set DATABASE_URL in your environment to enable DB."
-      );
-    };
+    throw new Error(
+      "No DATABASE_URL set; database operations are disabled. Set DATABASE_URL in your environment to enable DB."
+    );
+  };
 
 export async function initDB() {
   if (!databaseUrl) {
@@ -21,6 +21,10 @@ export async function initDB() {
   }
 
   try {
+    console.log("Attempting to connect to Neon database...");
+    await sql`SELECT 1`; // Simple connection test
+    console.log("Database connection successful!");
+
     await sql`CREATE TABLE IF NOT EXISTS transactions(
             id SERIAL PRIMARY KEY,
             user_id VARCHAR(255) NOT NULL,
@@ -32,9 +36,8 @@ export async function initDB() {
 
     console.log("Database initialized successfully");
   } catch (error) {
-    console.error("Error creating table:", error);
-    // Only crash in production; in development we prefer the server to run
-    // so the rest of the app (e.g., frontend, health checks) can be used.
-    if (process.env.NODE_ENV === "production") process.exit(1);
+    console.error("Error connecting to database:", error.message);
+    console.warn("Database connection failed - server will continue without database functionality");
+    // Don't crash the server, just continue without DB
   }
 }

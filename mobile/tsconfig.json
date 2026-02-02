@@ -2,16 +2,22 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
+    "skipLibCheck": true,
+    "noImplicitAny": false,
+    "allowJs": true,
     "paths": {
       "@/*": [
         "./*"
       ]
-    }
+    },
+    "types": []
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts"
-, "app/_layout.jsx", "app/index.jsx"  ]
+    "expo-env.d.ts",
+    "app/_layout.jsx",
+    "app/index.jsx"
+  ]
 }

@@ -1,22 +1,22 @@
-import {sql} from '../config/db.js';
+import { sql } from '../config/db.js';
 
 export async function getTransactionsByUserId(req, res) {
-    
-        try {
-            const { userid } = req.params;
-            const transactions = await sql`
+
+    try {
+        const { userid } = req.params;
+        const transactions = await sql`
             SELECT * FROM transactions WHERE user_id = ${userid} ORDER BY created_at DESC
             `;
-            res.status(200).json(transactions);
-    
-        } catch (e) {
-            console.log("Error fetching transactions:", e);
-            res.status(500).json({ message: "Internal server error" });
-    
-        }
+        res.status(200).json(transactions);
+
+    } catch (e) {
+        console.log("Error fetching transactions:", e);
+        res.status(500).json({ message: "Internal server error" });
+
+    }
 }
 
-export async function createTransactions (req, res)  {
+export async function createTransactions(req, res) {
     try {
         const { user_id, title, amount, category } = req.body;
         if (!title || amount === undefined || !category || !user_id) {
@@ -63,7 +63,7 @@ export async function deleteTransaction(req, res) {
         res.status(500).json({ message: "Internal server error" });
     }
 }
-export async function getTransactionSummary (req, res) {
+export async function getTransactionSummary(req, res) {
     try {
         const { userid } = req.params;
         const balanceResult = await sql`
@@ -75,9 +75,9 @@ export async function getTransactionSummary (req, res) {
         SELECT COALESCE(SUM(amount),0) as expense FROM transactions WHERE user_id = ${userid} AND amount < 0`
 
         res.status(200).json({
-            balance:balanceResult[0].balance,
-            income:incomeResult[0].income,
-            expense:expenseResult[0].expense
+            balance: balanceResult[0].balance,
+            income: incomeResult[0].income,
+            expense: expenseResult[0].expense
 
         })
     } catch (error) {

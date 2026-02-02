@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   illustration: {
-    width: "100%",
+    width: 300,
     height: 310,
     resizeMode: "contain",
   },
@@ -20,6 +20,13 @@ export const styles = StyleSheet.create({
     color: COLORS.text,
     marginVertical: 15,
     textAlign: "center",
+  },
+  subtitle: {
+    fontSize: 16,
+    color: COLORS.textLight,
+    marginBottom: 20,
+    textAlign: "center",
+    lineHeight: 22,
   },
   input: {
     backgroundColor: COLORS.white,
@@ -46,6 +53,20 @@ export const styles = StyleSheet.create({
     color: COLORS.white,
     fontSize: 18,
     fontWeight: "600",
+  },
+  secondaryButton: {
+    backgroundColor: "transparent",
+    borderRadius: 12,
+    padding: 16,
+    alignItems: "center",
+    marginTop: 10,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+  },
+  secondaryButtonText: {
+    color: COLORS.text,
+    fontSize: 16,
+    fontWeight: "500",
   },
   footerContainer: {
     flexDirection: "row",
@@ -108,4 +129,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     fontSize: 14,
   },
+
+  
 });

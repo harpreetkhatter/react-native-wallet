@@ -10,6 +10,8 @@ const coffeeTheme = {
   income: "#2ECC71",
   card: "#FFFFFF",
   shadow: "#000000",
+  illustration: require("../assets/images/revenue-coffee.png"),
+  logo: require("../assets/images/logo-coffee.png"),
 };
 
 const forestTheme = {
@@ -22,7 +24,10 @@ const forestTheme = {
   expense: "#C62828",
   income: "#388E3C",
   card: "#FFFFFF",
+  illustration: require("../assets/images/revenue-forest.png"),
+  logo: require("../assets/images/logo-forest.png"),
   shadow: "#000000",
+  
 };
 
 const purpleTheme = {
@@ -36,6 +41,8 @@ const purpleTheme = {
   income: "#388E3C",
   card: "#FFFFFF",
   shadow: "#000000",
+  illustration: require("../assets/images/revenue-purple.png"),
+  logo: require("../assets/images/logo-purple.png"),
 };
 
 const oceanTheme = {
@@ -49,6 +56,8 @@ const oceanTheme = {
   income: "#26A69A",
   card: "#FFFFFF",
   shadow: "#000000",
+  illustration: require("../assets/images/revenue-ocean.png"),
+  logo: require("../assets/images/logo-ocean.png"),
 };
 
 export const THEMES = {
@@ -59,4 +68,4 @@ export const THEMES = {
 };
 
 // 👇 change this to switch theme
-export const COLORS = THEMES.coffee;
+export const COLORS = THEMES.purple;

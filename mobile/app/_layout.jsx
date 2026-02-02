@@ -6,11 +6,29 @@ import { Stack } from "expo-router";
 import SafeScreen from "../components/SafeScreen";
 import { ClerkProvider } from "@clerk/clerk-expo";
 import { Slot } from "expo-router";
-import { tokenCache } from "@clerk/clerk-expo/token-cache";
+import * as SecureStore from "expo-secure-store";
+import { StatusBar } from "expo-status-bar";
 
 // Enable native screens for react-navigation (improves performance and avoids
 // some native view issues that can surface as 'default' undefined errors)
 enableScreens();
+
+const tokenCache = {
+  async getToken(key) {
+    try {
+      return SecureStore.getItemAsync(key);
+    } catch (err) {
+      return null;
+    }
+  },
+  async saveToken(key, value) {
+    try {
+      return SecureStore.setItemAsync(key, value);
+    } catch (err) {
+      return;
+    }
+  },
+};
 
 export default function RootLayout() {
   const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
@@ -27,6 +45,7 @@ export default function RootLayout() {
         <SafeScreen>
           <Slot />
         </SafeScreen>
+        <StatusBar style="dark" />
       </GestureHandlerRootView>
     </ClerkProvider>
   );
